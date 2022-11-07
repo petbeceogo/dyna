@@ -46,6 +46,14 @@ func DoubleMapValue(m map[string]interface{}, key string) (float64, error) {
 	return 0, ErrNoKey
 }
 
+func StringMapValue(m map[string]interface{}, key string) (string, error) {
+	if val, ok := m[key]; ok {
+		return StringValue(val)
+	}
+
+	return "", ErrNoKey
+}
+
 func DoubleArrayValue(arrVal []interface{}) ([]float64, error) {
 	arr := make([]float64, len(arrVal))
 	for i, v := range arrVal {
