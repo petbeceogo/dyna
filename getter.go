@@ -4,6 +4,18 @@ func IntValue(val interface{}) (int, error) {
 	if intVal, ok := val.(int); ok {
 		return intVal, nil
 	}
+	if int64Val, ok := val.(int64); ok {
+		return int(int64Val), nil
+	}
+	if int32Val, ok := val.(int32); ok {
+		return int(int32Val), nil
+	}
+	if int16Val, ok := val.(int16); ok {
+		return int(int16Val), nil
+	}
+	if int8Val, ok := val.(int8); ok {
+		return int(int8Val), nil
+	}
 	if floatVal, ok := val.(float64); ok {
 		return int(floatVal), nil
 	}
@@ -15,7 +27,10 @@ func DoubleValue(val interface{}) (float64, error) {
 	if floatVal, ok := val.(float64); ok {
 		return floatVal, nil
 	}
-	if intVal, ok := val.(int); ok {
+	if float32Val, ok := val.(float32); ok {
+		return float64(float32Val), nil
+	}
+	if intVal, err := IntValue(val); err == nil {
 		return float64(intVal), nil
 	}
 
